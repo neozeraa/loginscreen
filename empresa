@@ -1,0 +1,7 @@
+#!/bin/bash
+NOME="$*"
+if [ -z "$NOME" ]; then
+  read -p "Digite o novo nome da empresa: " NOME
+fi
+sed -i -E "s/nome: \"[^\"]*\"/nome: \"$NOME\"/" index.html
+echo "✅ Nome do código alterado para: $NOME"

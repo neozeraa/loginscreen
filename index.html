@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrar ou criar conta</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#EEF0F7;--card:#fff;--ink:#12141F;--mut:#5B6076;--line:#D5D9E8;--acc:#2B3BE0;--accink:#fff;--err:#C42B3A;--ok:#14803C;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1018;--card:#171A27;--ink:#EEF0F7;--mut:#9AA0BA;--line:#2B3047;--acc:#7C8BFF;--accink:#0E1018;--err:#FF7A86;--ok:#5FD08A}}
+:root[data-theme="dark"]{--bg:#0E1018;--card:#171A27;--ink:#EEF0F7;--mut:#9AA0BA;--line:#2B3047;--acc:#7C8BFF;--accink:#0E1018;--err:#FF7A86;--ok:#5FD08A}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center;padding:20px}
+main{width:100%;max-width:420px}
+.logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:26px}
+.logo-mark{width:44px;height:44px;border-radius:12px;background:var(--acc);color:var(--accink);display:grid;place-items:center;font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+.logo-name{font-weight:800;font-size:1.5rem;letter-spacing:.04em}
+h1{font-size:2rem;line-height:1.1;font-weight:800;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--mut);margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:10px;padding:4px;margin-bottom:20px}
+.tabs button{border:0;background:none;color:var(--mut);font:inherit;font-weight:600;padding:9px;border-radius:7px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+label{display:block;font-weight:600;font-size:.9rem;margin:14px 0 5px}
+.f{position:relative}
+input[type=text],input[type=email],input[type=password]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+input[aria-invalid="true"]{border-color:var(--err)}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--mut);font:inherit;font-size:.85rem;font-weight:600;padding:8px;cursor:pointer}
+.err{color:var(--err);font-size:.85rem;min-height:1.1em;margin:4px 0 0}
+.bar{height:5px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--err);transition:width .2s,background .2s}
+.hint{font-size:.82rem;color:var(--mut);margin:4px 0 0}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;font-size:.9rem}
+.row label{display:flex;gap:8px;align-items:center;margin:0;font-weight:400}
+a,.lnk{color:var(--acc);font-weight:600;background:none;border:0;font:inherit;font-weight:600;padding:0;cursor:pointer;text-decoration:underline}
+.btn{width:100%;margin-top:20px;border:0;border-radius:10px;background:var(--acc);color:var(--accink);font:inherit;font-weight:700;padding:13px;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:14px;padding:10px 12px;border-radius:10px;font-size:.9rem;border:1px solid var(--line)}
+.msg.e{color:var(--err);border-color:var(--err)}.msg.o{color:var(--ok);border-color:var(--ok)}
+[hidden]{display:none!important}
+.user{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.av{width:52px;height:52px;border-radius:50%;background:var(--acc);color:var(--accink);display:grid;place-items:center;font-weight:800;font-size:1.3rem}
+.sec{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.dng{color:var(--err);border-color:var(--err)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo" aria-label="Logo"><div class="logo-mark" id="logo-mark"></div><span class="logo-name" id="logo-name"></span></div>
+  <section id="auth">
+    <h1 id="title">Entre na sua conta</h1>
+    <p class="sub" id="sub">Use seu e-mail e senha para continuar.</p>
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button role="tab" id="t-login" aria-selected="true" data-go="login">Entrar</button>
+        <button role="tab" id="t-reg" aria-selected="false" data-go="register">Criar conta</button>
+      </div>
+
+      <form id="login" novalidate>
+        <label for="l-email">E-mail</label>
+        <input id="l-email" type="email" autocomplete="email" inputmode="email">
+        <p class="err" id="l-email-e"></p>
+        <label for="l-pass">Senha</label>
+        <div class="f"><input id="l-pass" type="password" autocomplete="current-password"><button type="button" class="eye" data-eye="l-pass">Mostrar</button></div>
+        <p class="err" id="l-pass-e"></p>
+        <div class="row"><label><input type="checkbox" id="l-rem"> Manter conectado</label><button type="button" class="lnk" data-go="forgot">Esqueci a senha</button></div>
+        <button class="btn" type="submit">Entrar</button>
+        <div class="msg" id="l-msg" hidden role="alert"></div>
+      </form>
+
+      <form id="register" novalidate hidden>
+        <label for="r-name">Nome completo</label>
+        <input id="r-name" type="text" autocomplete="name">
+        <p class="err" id="r-name-e"></p>
+        <label for="r-email">E-mail</label>
+        <input id="r-email" type="email" autocomplete="email" inputmode="email">
+        <p class="err" id="r-email-e"></p>
+        <label for="r-pass">Senha</label>
+        <div class="f"><input id="r-pass" type="password" autocomplete="new-password"><button type="button" class="eye" data-eye="r-pass">Mostrar</button></div>
+        <div class="bar"><i id="r-bar"></i></div>
+        <p class="hint" id="r-hint">Mínimo de 8 caracteres, com letra e número.</p>
+        <p class="err" id="r-pass-e"></p>
+        <label for="r-conf">Confirmar senha</label>
+        <input id="r-conf" type="password" autocomplete="new-password">
+        <p class="err" id="r-conf-e"></p>
+        <div class="row"><label><input type="checkbox" id="r-terms"> Aceito os termos de uso</label></div>
+        <p class="err" id="r-terms-e"></p>
+        <button class="btn" type="submit">Criar conta</button>
+        <div class="msg" id="r-msg" hidden role="alert"></div>
+      </form>
+
+      <form id="forgot" novalidate hidden>
+        <label for="f-email">E-mail da conta</label>
+        <input id="f-email" type="email" autocomplete="email" inputmode="email">
+        <p class="err" id="f-email-e"></p>
+        <button class="btn" type="submit">Gerar código</button>
+        <div class="msg" id="f-msg" hidden role="alert"></div>
+        <div id="f-step2" hidden>
+          <label for="f-code">Código de 6 dígitos</label>
+          <input id="f-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+          <label for="f-new">Nova senha</label>
+          <input id="f-new" type="password" autocomplete="new-password">
+          <p class="err" id="f-new-e"></p>
+          <button class="btn" type="button" id="f-save">Salvar nova senha</button>
+        </div>
+        <div class="row"><button type="button" class="lnk" data-go="login">Voltar para entrar</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="home" hidden>
+    <div class="card">
+      <div class="user"><div class="av" id="h-av"></div><div><h1 id="h-name" style="font-size:1.4rem;margin:0"></h1><span class="sub" id="h-email" style="margin:0"></span></div></div>
+      <p class="sub" id="h-since"></p>
+      <button class="btn sec" id="out">Sair</button>
+      <button class="btn sec dng" id="del">Excluir minha conta</button>
+    </div>
+  </section>
+  <p class="hint" style="text-align:center;margin-top:16px">&copy;2026 - Todos os dados guardados.</p>
+</main>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO DA MARCA — edite só aqui para trocar o nome/logo
+   ============================================================ */
+const MARCA = {
+  nome: "EMPRESA",      
+  inicial: "",          
+  corPrincipal: ""      
+};
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+$('logo-name').textContent=MARCA.nome;
+$('logo-mark').textContent=(MARCA.inicial||MARCA.nome.charAt(0)).toUpperCase();
+document.title=MARCA.nome+' | Entrar ou criar conta';
+if(MARCA.corPrincipal)document.documentElement.style.setProperty('--acc',MARCA.corPrincipal);
+const mem={};
+const store={
+  get(k){try{return localStorage.getItem(k)}catch(e){return mem[k]??null}},
+  set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}},
+  del(k){try{localStorage.removeItem(k)}catch(e){delete mem[k]}}
+};
+const users=()=>{try{return JSON.parse(store.get('users')||'{}')}catch(e){return{}}};
+const saveUsers=u=>store.set('users',JSON.stringify(u));
+const session={
+  get(){let s=null;try{s=sessionStorage.getItem('session')}catch(e){s=mem.session||null}return s||store.get('session')},
+  set(email,rem){const v=email;if(rem)store.set('session',v);else{try{sessionStorage.setItem('session',v)}catch(e){mem.session=v}}},
+  clear(){store.del('session');try{sessionStorage.removeItem('session')}catch(e){delete mem.session}}
+};
+const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+const salt=()=>hex(crypto.getRandomValues(new Uint8Array(16)));
+async function hash(p,s){
+  const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);
+  return hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(s),iterations:120000,hash:'SHA-256'},key,256));
+}
+const views={login:'login',register:'register',forgot:'forgot'};
+const titles={login:['Entre na sua conta','Use seu e-mail e senha para continuar.'],register:['Crie sua conta','Leva menos de um minuto.'],forgot:['Recupere o acesso','Informe seu e-mail para receber um código.']};
+function go(v){
+  Object.keys(views).forEach(k=>$(k).hidden=k!==v);
+  $('t-login').setAttribute('aria-selected',v==='login');
+  $('t-reg').setAttribute('aria-selected',v==='register');
+  $('title').textContent=titles[v][0];$('sub').textContent=titles[v][1];
+  document.querySelectorAll('.msg').forEach(m=>m.hidden=true);
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+document.querySelectorAll('[data-eye]').forEach(b=>b.addEventListener('click',()=>{
+  const i=$(b.dataset.eye);const show=i.type==='password';i.type=show?'text':'password';b.textContent=show?'Ocultar':'Mostrar';
+}));
+function fe(id,msg){const el=$(id),er=$(id+'-e');if(er)er.textContent=msg||'';el.setAttribute('aria-invalid',msg?'true':'false');return !msg}
+function msg(id,text,ok){const m=$(id);m.textContent=text;m.className='msg '+(ok?'o':'e');m.hidden=false}
+const emailOk=e=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
+const passErr=p=>p.length<8?'A senha precisa ter ao menos 8 caracteres.':!/[A-Za-z]/.test(p)?'Inclua ao menos uma letra.':!/\d/.test(p)?'Inclua ao menos um número.':'';
+function strength(p){let s=0;if(p.length>=8)s++;if(p.length>=12)s++;if(/[a-z]/.test(p)&&/[A-Z]/.test(p))s++;if(/\d/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;return s}
+$('r-pass').addEventListener('input',e=>{
+  const s=strength(e.target.value),b=$('r-bar');
+  b.style.width=(e.target.value?Math.max(s,1)*20:0)+'%';
+  b.style.background=s<=2?'var(--err)':s<=3?'#D98A00':'var(--ok)';
+  $('r-hint').textContent=!e.target.value?'Mínimo de 8 caracteres, com letra e número.':s<=2?'Senha fraca':s<=3?'Senha média':'Senha forte';
+});
+$('register').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const name=$('r-name').value.trim(),email=$('r-email').value.trim().toLowerCase(),p=$('r-pass').value,c=$('r-conf').value;
+  let ok=true;
+  ok=fe('r-name',name.split(/\s+/).length<2?'Informe nome e sobrenome.':'')&&ok;
+  ok=fe('r-email',emailOk(email)?'':'Digite um e-mail válido.')&&ok;
+  ok=fe('r-pass',passErr(p))&&ok;
+  ok=fe('r-conf',p!==c?'As senhas não coincidem.':'')&&ok;
+  if(!$('r-terms').checked){$('r-terms-e').textContent='Aceite os termos para continuar.';ok=false}else $('r-terms-e').textContent='';
+  if(!ok)return;
+  const u=users();
+  if(u[email]){fe('r-email','Este e-mail já tem uma conta. Tente entrar.');return}
+  const s=salt();
+  u[email]={name,salt:s,hash:await hash(p,s),created:Date.now(),fails:0,lock:0};
+  saveUsers(u);
+  session.set(email,false);show(email);
+});
+$('login').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const email=$('l-email').value.trim().toLowerCase(),p=$('l-pass').value;
+  let ok=fe('l-email',emailOk(email)?'':'Digite um e-mail válido.');
+  ok=fe('l-pass',p?'':'Digite sua senha.')&&ok;
+  if(!ok)return;
+  const u=users(),acc=u[email];
+  if(acc&&acc.lock>Date.now()){msg('l-msg','Muitas tentativas. Tente de novo em '+Math.ceil((acc.lock-Date.now())/60000)+' min.');return}
+  const good=acc&&(await hash(p,acc.salt))===acc.hash;
+  if(!good){
+    if(acc){acc.fails=(acc.fails||0)+1;if(acc.fails>=5){acc.lock=Date.now()+5*60000;acc.fails=0}saveUsers(u)}
+    msg('l-msg','E-mail ou senha incorretos.');return;
+  }
+  acc.fails=0;acc.lock=0;saveUsers(u);
+  session.set(email,$('l-rem').checked);show(email);
+});
+let reset=null;
+$('forgot').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const email=$('f-email').value.trim().toLowerCase();
+  if(!fe('f-email',emailOk(email)?'':'Digite um e-mail válido.'))return;
+  if(!users()[email]){msg('f-msg','Se o e-mail existir, um código será enviado.',true);return}
+  const code=String(100000+crypto.getRandomValues(new Uint32Array(1))[0]%900000);
+  reset={email,code,exp:Date.now()+10*60000};
+  msg('f-msg','Demonstração sem envio de e-mail. Seu código: '+code,true);
+  $('f-step2').hidden=false;
+});
+$('f-save').addEventListener('click',async()=>{
+  const e=passErr($('f-new').value);
+  if(!fe('f-new',e))return;
+  if(!reset||Date.now()>reset.exp||$('f-code').value.trim()!==reset.code){msg('f-msg','Código inválido ou expirado.');return}
+  const u=users(),s=salt();
+  u[reset.email].salt=s;u[reset.email].hash=await hash($('f-new').value,s);u[reset.email].lock=0;saveUsers(u);
+  reset=null;$('f-step2').hidden=true;$('forgot').reset();
+  go('login');msg('l-msg','Senha atualizada. Entre com a nova senha.',true);
+});
+function show(email){
+  const acc=users()[email];
+  if(!acc){session.clear();return}
+  $('auth').hidden=true;$('home').hidden=false;
+  $('h-name').textContent='Olá, '+acc.name.split(' ')[0];
+  $('h-email').textContent=email;
+  $('h-av').textContent=acc.name[0].toUpperCase();
+  $('h-since').textContent='Conta criada em '+new Date(acc.created).toLocaleDateString('pt-BR')+'.';
+}
+function leave(){session.clear();$('home').hidden=true;$('auth').hidden=false;$('login').reset();$('register').reset();go('login')}
+$('out').addEventListener('click',leave);
+$('del').addEventListener('click',()=>{
+  if(!confirm('Excluir sua conta de forma permanente?'))return;
+  const u=users();delete u[session.get()];saveUsers(u);leave();
+});
+const cur=session.get();if(cur)show(cur);
+})();
+</script>
+</body>
+</html>

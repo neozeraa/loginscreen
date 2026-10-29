@@ -1,92 +1,74 @@
 <div align="center">
 
-# 🔐 Login Screen
+# 🔐 Login Screen 2.0
 
-### Tela de login e cadastro moderna, responsiva e pronta para o seu projeto
+### Template moderno de Login e Cadastro, responsivo e com exemplo de Backend em Node.js
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/status-pronto%20para%20uso-brightgreen?style=for-the-badge)
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 
-**Por [VERY SYSTEMS](https://github.com/neozeraa)**
+**Desenvolvido por [VERY SYSTEMS](https://github.com/neozeraa)**
 
 </div>
 
 ---
 
-## ✨ Funcionalidades
+## 📌 Sobre o Projeto
 
-- 🔑 **Três abas completas:** Entrar, Criar Conta e Recuperar Senha
-- 🛡️ **Proteção de senha simulada:** hash com PBKDF2, armazenado via `localStorage`
-- 🌗 **Tema claro e escuro:** adapta-se automaticamente ao sistema do usuário
-- 📱 **Totalmente responsiva:** funciona bem no celular, tablet e computador
-- ⚡ **Comandos de terminal:** `empresa` e `teste` para editar e visualizar rapidamente
+O **Login Screen 2.0** é uma solução completa para quem precisa de uma interface de autenticação bonita, rápida e pronta para integrar em seus projetos. A versão atualizada traz um design premium (utilizando a fonte *Plus Jakarta Sans*), abas dinâmicas e um painel hero com gradiente. 
 
-> ⚠️ **Aviso:** a autenticação é **simulada** e roda 100% no navegador. É ideal para protótipos e demonstrações. Em produção, utilize um back-end real com validação no servidor.
+Além do frontend super completo, o repositório agora inclui um **template de Backend em Node.js com SQLite**, mostrando exatamente como transformar a tela estática em um sistema com banco de dados real.
 
 ---
 
-## 📦 Instalação
+## ✨ Principais Funcionalidades
 
+### 🎨 Frontend (Interface)
+- **3 Abas Integradas:** Entrar, Criar Conta e Recuperar Senha.
+- **Modo Escuro Automático:** Adapta-se instantaneamente à preferência do sistema do usuário.
+- **Validação Visual:** Barra animada de força de senha e checklist de requisitos (letras, números, tamanho).
+- **Simulação Local Segura:** O código base funciona direto no navegador com senhas protegidas por hash (PBKDF2) salvas no `localStorage`.
+
+### ⚙️ Backend (Exemplo Incluso)
+- **API REST Pronta:** Rotas estruturadas para `/api/cadastrar` e `/api/login`.
+- **Banco de Dados Real:** Tabela de usuários gerada automaticamente em SQLite.
+- **Segurança de Dados:** Hashes de senha utilizando a famosa biblioteca `bcrypt`.
+
+---
+
+## 🚀 Como Instalar e Usar
+
+### 1. Clonar o repositório
+Abra seu terminal (PC ou Termux) e faça o download do projeto:
 ```bash
-git clone https://github.com/neozeraa/loginscreen.git
+git clone [https://github.com/neozeraa/loginscreen.git](https://github.com/neozeraa/loginscreen.git)
 cd loginscreen
-```
-
----
-
-## 🖥️ Comandos do Terminal
-
-### 1. 🏷️ Personalizar a marca
-
-Altera instantaneamente o nome da empresa na tela.
-
-```bash
-./empresa NOME_DESEJADO
-```
-
-**Exemplo:**
-
-```bash
-./empresa NOVADEV
-```
-
-### 2. 👀 Visualizar o projeto
-
-Sobe um servidor local para testar a interface.
-
-```bash
-./teste
-```
-
-Depois, acesse: **http://localhost:8080**
-
-> 💡 Se aparecer "permission denied", libere a execução com:
-> `chmod +x empresa teste`
-
----
-
-## 📁 Estrutura do projeto
-
-```
+2. Apenas Frontend (Testar a Tela Visualmente)
+​Você tem scripts executáveis criados para facilitar sua vida:
+​Mudar o Nome da Empresa: ./empresa NOME_DA_SUA_MARCA
+​Rodar Servidor de Teste: ./teste (Depois, acesse http://localhost:8080)
+​(Nota: Caso dê erro de permissão no Termux, rode chmod +x empresa teste)
+​3. Rodar o Backend com Banco de Dados (Node.js)
+​Se você quer testar a API com um banco real, entre na pasta do backend:
+cd backend_exemplo
+npm init -y
+npm install express sqlite3 bcrypt
+node server.js
+O servidor iniciará na porta 3000
+​📁 Estrutura de Arquivos
 loginscreen/
-├── index.html   # Tela de login (interface + lógica)
-├── empresa      # Script para trocar o nome da marca
-├── teste        # Script que inicia o servidor local
-└── README.md    # Documentação
-```
-
----
-
-## 🤝 Contribuindo
-
-Sugestões e melhorias são bem-vindas! Abra uma *issue* ou envie um *pull request*.
-
----
-
-<div align="center">
-
-**© 2026 — Desenvolvido por VERY SYSTEMS ([@neozeraa](https://github.com/neozeraa))**
-
-</div>
+├── index.html               # Tela principal (UI 2.0 completa)
+├── empresa                  # Script rápido para alterar o nome da marca na tela
+├── teste                    # Script que sobe um servidor web local
+├── backend_exemplo/         # Template de API Real
+│   ├── server.js            # Servidor Node.js + Express + SQLite
+│   └── .gitignore           # Ignora o banco de dados local no GitHub
+└── README.md                # Esta documentação
+🤝 Contribuindo
+​Sugestões e melhorias são bem-vindas! Este é um projeto Open Source. Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+​<div align="center">
+​© 2026 — Desenvolvido por VERY SYSTEMS (@neozeraa)
+​</div>

@@ -7,7 +7,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 
 **Desenvolvido por [VERY SYSTEMS](https://github.com/neozeraa)**
@@ -18,57 +18,92 @@
 
 ## 📌 Sobre o Projeto
 
-O **Login Screen 2.0** é uma solução completa para quem precisa de uma interface de autenticação bonita, rápida e pronta para integrar em seus projetos. A versão atualizada traz um design premium (utilizando a fonte *Plus Jakarta Sans*), abas dinâmicas e um painel hero com gradiente. 
+O **Login Screen 2.0** é uma solução completa para quem precisa de uma interface de autenticação bonita, rápida e pronta para integrar em seus projetos. Esta versão traz um design premium (fonte *Plus Jakarta Sans*), abas dinâmicas e um painel hero com gradiente.
 
-Além do frontend super completo, o repositório agora inclui um **template de Backend em Node.js com SQLite**, mostrando exatamente como transformar a tela estática em um sistema com banco de dados real.
+Além do frontend completo, o repositório inclui um **template de Backend em Node.js com SQLite**, mostrando como transformar a tela estática em um sistema com banco de dados real.
 
 ---
 
 ## ✨ Principais Funcionalidades
 
 ### 🎨 Frontend (Interface)
-- **3 Abas Integradas:** Entrar, Criar Conta e Recuperar Senha.
-- **Modo Escuro Automático:** Adapta-se instantaneamente à preferência do sistema do usuário.
-- **Validação Visual:** Barra animada de força de senha e checklist de requisitos (letras, números, tamanho).
-- **Simulação Local Segura:** O código base funciona direto no navegador com senhas protegidas por hash (PBKDF2) salvas no `localStorage`.
 
-### ⚙️ Backend (Exemplo Incluso)
-- **API REST Pronta:** Rotas estruturadas para `/api/cadastrar` e `/api/login`.
-- **Banco de Dados Real:** Tabela de usuários gerada automaticamente em SQLite.
-- **Segurança de Dados:** Hashes de senha utilizando a famosa biblioteca `bcrypt`.
+- **3 abas integradas:** Entrar, Criar Conta e Recuperar Senha
+- **Modo escuro automático:** adapta-se à preferência do sistema do usuário
+- **Validação visual:** barra animada de força da senha e checklist de requisitos (letras, números, tamanho)
+- **Simulação local segura:** funciona direto no navegador, com senhas protegidas por hash (PBKDF2) salvas no `localStorage`
+
+### ⚙️ Backend (Exemplo incluso)
+
+- **API REST pronta:** rotas `/api/cadastrar` e `/api/login`
+- **Banco de dados real:** tabela de usuários criada automaticamente em SQLite
+- **Segurança de dados:** hashes de senha com a biblioteca `bcrypt`
 
 ---
 
 ## 🚀 Como Instalar e Usar
 
 ### 1. Clonar o repositório
-Abra seu terminal (PC ou Termux) e faça o download do projeto:
+
+Abra o terminal (PC ou Termux) e baixe o projeto:
+
 ```bash
-git clone [https://github.com/neozeraa/loginscreen.git](https://github.com/neozeraa/loginscreen.git)
+git clone https://github.com/neozeraa/loginscreen.git
 cd loginscreen
-2. Apenas Frontend (Testar a Tela Visualmente)
-​Você tem scripts executáveis criados para facilitar sua vida:
-​Mudar o Nome da Empresa: ./empresa NOME_DA_SUA_MARCA
-​Rodar Servidor de Teste: ./teste (Depois, acesse http://localhost:8080)
-​(Nota: Caso dê erro de permissão no Termux, rode chmod +x empresa teste)
-​3. Rodar o Backend com Banco de Dados (Node.js)
-​Se você quer testar a API com um banco real, entre na pasta do backend:
+```
+
+### 2. Apenas Frontend (testar a tela visualmente)
+
+Scripts executáveis para facilitar:
+
+| Ação | Comando |
+|------|---------|
+| Mudar o nome da empresa | `./empresa NOME_DA_SUA_MARCA` |
+| Rodar servidor de teste | `./teste` (depois acesse http://localhost:8080) |
+
+> 💡 Se der erro de permissão (comum no Termux), rode:
+> ```bash
+> chmod +x empresa teste
+> ```
+
+### 3. Rodar o Backend com banco de dados (Node.js)
+
+Para testar a API com um banco real, entre na pasta do backend:
+
+```bash
 cd backend_exemplo
 npm init -y
 npm install express sqlite3 bcrypt
 node server.js
-O servidor iniciará na porta 3000
-​📁 Estrutura de Arquivos
+```
+
+O servidor iniciará na porta **3000**.
+
+---
+
+## 📁 Estrutura de Arquivos
+
+```
 loginscreen/
 ├── index.html               # Tela principal (UI 2.0 completa)
-├── empresa                  # Script rápido para alterar o nome da marca na tela
+├── empresa                  # Script rápido para alterar o nome da marca
 ├── teste                    # Script que sobe um servidor web local
-├── backend_exemplo/         # Template de API Real
+├── backend_exemplo/         # Template de API real
 │   ├── server.js            # Servidor Node.js + Express + SQLite
 │   └── .gitignore           # Ignora o banco de dados local no GitHub
 └── README.md                # Esta documentação
-🤝 Contribuindo
-​Sugestões e melhorias são bem-vindas! Este é um projeto Open Source. Sinta-se à vontade para abrir uma issue ou enviar um pull request.
-​<div align="center">
-​© 2026 — Desenvolvido por VERY SYSTEMS (@neozeraa)
-​</div>
+```
+
+---
+
+## 🤝 Contribuindo
+
+Sugestões e melhorias são bem-vindas! Este é um projeto Open Source. Abra uma *issue* ou envie um *pull request*.
+
+---
+
+<div align="center">
+
+**© 2026 — Desenvolvido por VERY SYSTEMS ([@neozeraa](https://github.com/neozeraa))**
+
+</div>
